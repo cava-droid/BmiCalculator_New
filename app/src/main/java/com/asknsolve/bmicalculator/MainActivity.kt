@@ -3,6 +3,7 @@ package com.asknsolve.bmicalculator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.asknsolve.bmicalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,11 +14,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val intent = Intent(this,ResultActivity::class.java)
 
         binding.resultButton.setOnClickListener{
-            intent.putExtra("height", binding.heightEditText.toString())
-            intent.putExtra("weight", binding.weightEditText.toString())
+            val intent = Intent(this,ResultActivity::class.java)
+/*
+            .text를 붙이지 않아 error 발생한 것이었음!!!
+
+            val mainHeight = binding.heightEditText.text.toString()
+            val mainWeight = binding.weightEditText.text.toString()
+
+            Log.d("mainActivity", "mainHeight = $mainHeight , mainWeight = $mainWeight")
+*/
+            intent.putExtra("height", binding.heightEditText.text.toString())
+            intent.putExtra("weight", binding.weightEditText.text.toString())
             startActivity(intent)
         }
     }
